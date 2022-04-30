@@ -21,7 +21,7 @@ createServer({
           title: 'Transaction 2',
           amount: 2500,
           type: 'exit',
-          category: 'Food',
+          category: 'Comissão',
           createdAt: new Date().toISOString()
         },
         {
@@ -29,7 +29,7 @@ createServer({
           title: 'Transaction 3',
           amount: 5000,
           type: 'deposit',
-          category: 'Food',
+          category: 'Carro',
           createdAt: new Date().toISOString()
         },
       ]

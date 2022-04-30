@@ -1,6 +1,16 @@
 import styles from './styles.module.scss';
+export interface TransactionsProps {
+    title: string;
+    amount: number;
+    category: string;
+    createdAt: string;
+}
 
-export function Transactions(){
+interface Props {
+    data: TransactionsProps;
+}
+
+export function Transactions({ data } : Props){
   return (
     <main className={styles.container}>
         <table>
@@ -16,19 +26,11 @@ export function Transactions(){
 
             <tbody>
                 <tr>
-                   <td>Desenvolvimento de website</td>
-                   <td className={styles.deposit}>R$12.000,00</td>
-                   <td>Desenvolvimento</td>
-                   <td>05/01/2021</td>
+                   <td>{data.title}</td>
+                   <td className={styles.deposit}>{data.amount}</td>
+                   <td>{data.category}</td>
+                   <td>{data.createdAt}</td>
                 </tr>
-
-                <tr>
-                   <td>Aluguel</td>
-                   <td className={styles.withdraw}>- R$2.000,00</td>
-                   <td>Apto</td>
-                   <td>16/01/2021</td>
-                </tr>
-
             </tbody>
         </table>
     </main>
