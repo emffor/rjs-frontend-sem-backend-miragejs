@@ -1,4 +1,4 @@
 # CONSUMINDO API FICTÍCIA COM MIRAGE JS - COMO SE TIVESSE EM UM PROJETO SEM BACKEND E UTILIZASSE O MIRAGE JS PARA SIMULAR UMA API FICTÍCIA.
 
-
-- yarn add miragejs
+- **yarn add miragejs**
+- **yarn add axios**

@@ -12,7 +12,7 @@ createServer({
           id: 'a1s1e1s25s1e1s2', 
           title: 'Transaction 1',
           amount: 1000,
-          type: 'deposit',
+          type: 'enter',
           category: 'Food',
           createdAt: new Date().toISOString()
         },
@@ -28,7 +28,7 @@ createServer({
           id: '4556456ggtt5555', 
           title: 'Transaction 3',
           amount: 5000,
-          type: 'deposit',
+          type: 'enter',
           category: 'Carro',
           createdAt: new Date().toISOString()
         },

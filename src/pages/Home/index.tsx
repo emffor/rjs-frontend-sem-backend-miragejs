@@ -1,8 +1,8 @@
 import { Transactions } from '../../components/Transactions';
 import styles from './styles.module.scss';
 import { useEffect, useState } from 'react';
-
-interface Transactions  {
+import { api } from '../../services/api';
+interface TransactionProps  {
   id: string;
   title: string;
   amount: number;
@@ -11,19 +11,52 @@ interface Transactions  {
 }
 
 export function Home(){
-  const [transactions, setTransactions] = useState<Transactions[]>([]);
-
+  const [ title, setTitle ] = useState('');
+  const [ amount, setAmount ] = useState(0);
+  const [ type, setType ] = useState('');
+  const [ category, setCategory ] = useState('');
   
-  useEffect(() => {
-    fetch('http://localhost:3000/api/transactions')
-    .then(response => response.json())
-    .then(data => setTransactions(data));
-  },[]);
+  const [transactions, setTransactions] = useState<TransactionProps[]>([]);
 
+  useEffect(() => {
+    api.get('/transactions')
+    .then(response => setTransactions(response.data));
+  },[]);
 
   return (
     <main className={styles.container}>
         <h1>PAGE HOME <span>MIRAGE JS</span></h1>
+
+        <div>
+            
+            <input      
+                placeholder='Titulo'
+                value={title}
+                onChange={event => setTitle(event.target.value)}
+            />
+
+            <input 
+                placeholder='Valor'
+                value={amount}
+                type="number"
+                onChange={event => setAmount(Number(event.target.value))}
+            />
+
+            <select name='Tipo de Transação'
+                onChange={(e) => setType(e.target.value)}
+            >
+                <option value="enter">Entrada</option>
+                <option value="exit">Saída</option>          
+            </select>
+
+            <input 
+                placeholder='Categoria'
+                value={category}
+                onChange={event => setCategory(event.target.value)}
+            />
+
+        </div>
+            
 
         {
           transactions.map(transaction => {
