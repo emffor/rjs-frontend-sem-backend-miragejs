@@ -2,7 +2,7 @@ import { Transactions } from '../../components/Transactions';
 import styles from './styles.module.scss';
 import { useEffect, useState } from 'react';
 import { api } from '../../services/api';
-interface TransactionProps  {
+interface TransactionsProps  {
   id: string;
   title: string;
   amount: number;
@@ -16,11 +16,11 @@ export function Home(){
   const [ type, setType ] = useState('enter');
   const [ category, setCategory ] = useState('');
   
-  const [transactions, setTransactions] = useState<TransactionProps[]>([]);
+  const [transactions, setTransactions] = useState<TransactionsProps[]>([]);
 
   useEffect(() => {
     api.get('/transactions')
-    .then(response => console.log(response.data))
+    .then(response => setTransactions(response.data.transactions));
   },[]);
 
   function handleAddTransaction(){
@@ -74,10 +74,9 @@ export function Home(){
         
 
         {
-          transactions.map(transaction => {
-            return <Transactions key={transaction.id} data={transaction} />
-          })
-        }
+          transactions.map(transaction => (
+            <Transactions key={transaction.id} data={transaction} />
+          ))}
     </main>
   );
 }

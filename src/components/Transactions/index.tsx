@@ -27,9 +27,20 @@ export function Transactions({ data } : Props){
             <tbody>
                 <tr>
                    <td>{data.title}</td>
-                   <td className={styles.deposit}>{data.amount}</td>
+                   <td 
+                   className={styles.deposit}
+                   >
+                    {
+                        new Intl.NumberFormat('pt-BR', {
+                            style: 'currency',
+                            currency: 'BRL'
+                        }).format(data.amount)
+                    }
+                   </td>
                    <td>{data.category}</td>
-                   <td>{data.createdAt}</td>
+                   <td>
+                        {new Intl.DateTimeFormat('pt-BR').format(new Date(data.createdAt))}
+                   </td>
                 </tr>
             </tbody>
         </table>
