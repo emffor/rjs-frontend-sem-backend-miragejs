@@ -20,7 +20,7 @@ export function Home(){
 
   useEffect(() => {
     api.get('/transactions')
-    .then(response => setTransactions(response.data));
+    .then(response => console.log(response.data))
   },[]);
 
   function handleAddTransaction(){

@@ -9,38 +9,35 @@ createServer({
     transaction: Model,
   },
 
+  seeds(server) {
+    server.db.loadData({
+      transactions: [
+        {
+          id: '4654652sdf332',
+          title: 'Vanda de Carro',	
+          type: 'deposit',
+          category: 'Vendas',
+          amount: 102000,
+          createdAt: new Date('2022-01-14 09:20:43'),
+        },
+        {
+          id: '564sa654as58e',
+          title: 'Aluguel da loja',	
+          type: 'withdraw',
+          category: 'Casa',
+          amount: 2200,
+          createdAt: new Date('2022-01-16 10:10:13'),
+        },
+      ]
+    })
+  },
+
 
   routes() {
     this.namespace = 'api'; //a a partir do http://localhost:3000/api/...
     
-    this.get('/transactions' ,() => {
-      return [
-        { 
-          id: 'a1s1e1s25s1e1s2', 
-          title: 'Transaction 1',
-          amount: 1000,
-          type: 'enter',
-          category: 'Food',
-          createdAt: new Date().toISOString()
-        },
-        {
-          id: '8ae098eauieaiu', 
-          title: 'Transaction 2',
-          amount: 2500,
-          type: 'exit',
-          category: 'Comissão',
-          createdAt: new Date().toISOString()
-        },
-        {
-          id: '4556456ggtt5555', 
-          title: 'Transaction 3',
-          amount: 5000,
-          type: 'enter',
-          category: 'Carro',
-          createdAt: new Date().toISOString()
-        },
-        
-      ]
+    this.get('/transactions', () => {
+      return this.schema.all('transaction');
     });
 
     //schema é o banco de dados
