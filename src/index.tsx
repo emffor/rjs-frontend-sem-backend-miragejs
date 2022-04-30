@@ -1,11 +1,18 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { App } from './App';
-import { createServer } from 'miragejs';
+import { createServer, Model } from 'miragejs';
 
 createServer({
+  //banco de dados interno do miragejs
+  models: {
+    transaction: Model,
+  },
+
+
   routes() {
     this.namespace = 'api'; //a a partir do http://localhost:3000/api/...
+    
     this.get('/transactions' ,() => {
       return [
         { 
@@ -32,8 +39,18 @@ createServer({
           category: 'Carro',
           createdAt: new Date().toISOString()
         },
+        
       ]
     });
+
+    //schema é o banco de dados
+    this.post('/transactions', (schema, request) => {
+      const data = JSON.parse(request.requestBody); //trans.. objeto
+
+      // método normal => return data; em baixo é para o miragejs
+      return schema.create('transaction', data);
+    });
+
   }
 });
 

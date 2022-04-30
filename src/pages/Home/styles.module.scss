@@ -44,4 +44,15 @@
         background-color: var(--gray-700);
     }
 
+    button {
+        max-width: 60px;
+        width: 100%;
+        justify-content: center;
+        align-items: center;
+        font-size: 2.5rem;
+        display: flex;
+        border: none;
+        border-radius: 1rem;
+    }
+
 }

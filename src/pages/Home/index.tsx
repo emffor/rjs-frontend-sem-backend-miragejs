@@ -13,7 +13,7 @@ interface TransactionProps  {
 export function Home(){
   const [ title, setTitle ] = useState('');
   const [ amount, setAmount ] = useState(0);
-  const [ type, setType ] = useState('');
+  const [ type, setType ] = useState('enter');
   const [ category, setCategory ] = useState('');
   
   const [transactions, setTransactions] = useState<TransactionProps[]>([]);
@@ -22,6 +22,17 @@ export function Home(){
     api.get('/transactions')
     .then(response => setTransactions(response.data));
   },[]);
+
+  function handleAddTransaction(){
+    const data = { 
+      title,
+      amount,
+      type,
+      category
+     };
+
+    api.post('/transactions', data)
+  }
 
   return (
     <main className={styles.container}>
@@ -56,7 +67,11 @@ export function Home(){
             />
 
         </div>
-            
+        
+        <div>
+            <button onClick={handleAddTransaction}>+</button>
+        </div>  
+        
 
         {
           transactions.map(transaction => {
